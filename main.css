@@ -1,0 +1,135 @@
+body {
+/*
+  background: url(vetdayflag.jpg);
+  background-repeat: no;
+  background-size: contain;
+  background-position: center; */
+}
+
+.button {
+  width: 35%;
+  height: 5em;
+  margin: 12px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+}
+
+/* Capital container will stay fixed at the top */
+.container-caps {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 82px;
+  overflow: scroll;
+  z-index: 99;
+  background: white;
+  padding-bottom: 10px;
+}
+
+#capitals {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  overflow: scroll;
+  width: 90%;
+}
+
+#states {
+  margin-top: 100px;
+  overflow: scroll; 
+}
+
+.capital {
+  font-size: 12pt;
+  width:  8em;
+  padding: 8px;
+  margin: 2px;
+  border: 1px solid darkgray;
+  text-align: center;
+  background: lightblue;
+}
+
+/* tr:nth-child(even) {
+    background-color: #dddddd;
+} */
+
+.cap-clicked {
+	background-color: yellow;
+  border: 1px dashed black;
+}
+
+.cap-used {
+  text-decoration: line-through;
+  color: gray;
+  background: lightgray;
+}
+
+.state-cap {
+  /*width: 20%;*/
+  width: 8em;
+  height: 50px;
+  padding: 14px;
+  margin: 1px;
+  border: 1px solid black;
+  text-align: center;
+  background: lightgreen;
+}
+
+.state, .ans {
+  width: 100%;
+  height: 50%;
+}
+
+.ans {
+  color: green;
+}
+
+.state {
+  border-bottom: 1px dotted black;
+}
+
+.wrong {
+  background-color: red;
+}
+
+.right {
+  
+}
+
+button {
+  padding: 24px;
+  margin: 36px;
+  text-align: center;
+}
+
+/*
+@media screen and (max-width: 700px) {
+ </style>
+ <meta name="viewport" content="width=device-width, initial-scale=1" />
+ <style>
+ main {
+    position: absolute;
+    
+  }
+  #capitals {
+    zorder: 99;
+    max-height: 50px;
+    position: absolute; */
+    overflow: auto;
+  }
+  
+  #states {
+    zorder: 1;
+    height: 100%;
+  }
+  
+  .cap-used {
+    display: none;
+  }
+}
+*/
