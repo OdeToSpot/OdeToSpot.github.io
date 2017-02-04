@@ -17,30 +17,6 @@
     $("#btnReset").click(function() {
       $(".ans").text("").removeClass("wrong");
       $(".capital").removeClass("cap-used cap-clicked");
-      /*$(".capital").removeClass("cap-used").removeClass("cap-clicked");*/
-/*
-      if ($(".cap-used").length == $(".capitol").length) {
-        alert("Complete the quiz before submitting");
-        return 1;
-      }
-      
-      $(".state-cap").each(function() {
-        var state = $(this).find(".state");
-        var cap   = $(this).find(".ans");
-        console.log(state.text() + " - " + cap.text());
-        if (cap.text() !== objStatesAndCaps[state.text()]) {
-          //state.addClass("wrong");
-          //$(this).addClass("wrong");
-          cap.addClass("wrong");
-        }
-      });
-      if ($(".wrong") == 0) {
-        alert("Yea! They are all correct!");
-      }
-      else {
-        alert ("You missed a few :(  Keep trying!")
-      }
-*/
     });
   
     // Set the onClick event for each cell in the #capitals table
@@ -65,10 +41,9 @@
       var state = $(this).find(".state");
       var cap = $(this).find(".ans");
 
-      cap.removeClass("wrong");
+      cap.removeClass("wrong wrong-red");
       
       if (cap.text() > "") {
-        //alert(cap.text() + " - " + cap.text().toId());
         $("#" + cap.text().toId()).removeClass("cap-used");
         cap.text("");
       }
@@ -89,6 +64,10 @@
         alert("Woo! You did it!");
         $("#states").off("click");
         $("#capitals").off("click");
+      }
+      else if ($(".right").length + $(".wrong").length == $(".capital").length) {
+        alert("You missed " + $(".wrong").length + ". :(");
+        $(".wrong").addClass("wrong-red");
       }
     }
   }); 
@@ -114,7 +93,7 @@ objStatesAndCaps['Virginia']        = "Richmond";
 objStatesAndCaps['North Carolina']  = "Raleigh";
 objStatesAndCaps['West Virginia']   = "Charleston";
 objStatesAndCaps['Kentucky']        = "Frankfort";
-objStatesAndCaps['Tennessee']       = "Nashville";
+objStatesAndCaps['Tennessee']       = "Nashville"; 
 
 /* Randomly sort an array
    Thanks to: 

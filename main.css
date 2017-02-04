@@ -37,16 +37,20 @@ body {
   justify-content: center;
   overflow: scroll;
   width: 90%;
+  border: 1px solid gray;
 }
 
 #states {
   margin-top: 100px;
+  width: 90%;
   overflow: scroll; 
+  border: 1px solid gray;
 }
 
 .capital {
   font-size: 12pt;
   width:  8em;
+  height: 20px;
   padding: 8px;
   margin: 2px;
   border: 1px solid darkgray;
@@ -94,11 +98,15 @@ body {
 }
 
 .wrong {
-  background-color: red;
+  /*background-color: red;*/
 }
 
 .right {
   
+}
+
+.wrong-red {
+  background-color: red;
 }
 
 button {
