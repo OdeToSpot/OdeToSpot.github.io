@@ -70,9 +70,18 @@ body {
 }
 
 .state {
-  width: 33.3%;
-  height: 3em;
+  width: 30.0%;
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
   text-align: center;
+  border: 1px solid black;
+  margin: 1px;
+  cursor: pointer;
+}
+
+.state:hover {
+  transform: skew(10deg);
+  background-color: lightgray;
 }
 
 .wrong {

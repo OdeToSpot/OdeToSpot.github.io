@@ -21,7 +21,7 @@
       $(".capital").remove();
       createCapsDiv(capsToArray(objStatesAndCaps).sort(randomSort2));
 
-      $(".state").removeClass("state-used").fadeIn("slow");
+      $(".state").removeClass("state-used").fadeIn("fast");
       
     });
   
