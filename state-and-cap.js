@@ -1,11 +1,11 @@
 // jQuery
-  $(document).ready(function(){
-    
+  $(document).ready(function() {
+
     // Create the "#capitals" table.  Expects <table id="capitals> in the HTML
     createCapsDiv(capsToArray(objStatesAndCaps).sort(randomSort2));
     
     // Create the "#states" table.  Expects <table id="states" in the HTML
-    createStatesDiv(statesToArray(objStatesAndCaps).sort(randomSort2));
+    createStatesDiv(statesToArray(objStatesAndCaps).sort()); //randomSort2));
 
     // Check whether all uttons are clicked
     function allSelected() {
@@ -15,65 +15,19 @@
     // Set up onClick event for submit button
     
     $("#btnReset").click(function() {
-      $(".ans").text("").removeClass("wrong");
-      $(".capital").removeClass("cap-used cap-clicked");
+
+      aryWrong = [];
+
+      $(".capital").remove();
+      createCapsDiv(capsToArray(objStatesAndCaps).sort(randomSort2));
+
+      $(".state").removeClass("state-used").fadeIn("slow");
+      
     });
   
-    // Set the onClick event for each cell in the #capitals table
-     $("#capitals").on("click",".capital",onCapClick);
-     
-    // The onCapClick function highights the capital, 
-    // so it is ready to use in an answer
-     function onCapClick(e) {
-      var curSel = $(".cap-clicked"); // get all curently selected (should only be 1!)
-      if (! $(this).hasClass("cap-used")) {
-        $(this).toggleClass("cap-clicked"); // select the current one
-      }
-      curSel.removeClass("cap-clicked");  // remove from the rest - note, if the cur was selected, this will unselect it, which is what we want
-      
-     }
+    $(".state").click(onStateClick);
 
-    // Set the onClick event for each #state cell
-    $("#states").on("click",".state-cap",onStateClick);
-    
-    // The onStateClick function enters the selected capital
-    function onStateClick(e) {
-      var state = $(this).find(".state");
-      var cap = $(this).find(".ans");
-      var curcap = $(".capital:visible");
-
-      //cap.removeClass("cap-display");
-      curcap.hide("slow");
-      curcap.addClass("cap-used");
-      $(".capital").not(".cap-used").filter(":first").show("slow");
-      
-      // if this state has an associated capital, remove the capital and get it back in the capital display queue
-      if (cap.text() > "") {
-        $("#" + cap.text().toId()).removeClass("cap-used");
-        cap.text("");
-      }
-      
-      if (cap.text() == objStatesAndCaps[state.text()]) {
-        cap.addClass("right");
-      }
-      else if (cap.text() !== "") {
-        cap.addClass("wrong");
-      }
-
-      cap.text(curcap.text());
-
-      
-      if ($(".right").length == $(".capital").length) {
-        alert("Woo! You did it!");
-        $("#states").off("click");
-        $("#capitals").off("click");
-      }
-      else if ($(".right").length + $(".wrong").length == $(".capital").length) {
-        alert("You missed " + $(".wrong").length + ". :(");
-        $(".wrong").addClass("wrong-red");
-      }
-    }
-  }); 
+})
   
 var curState = "";
 // Note:  An associative array (ie hash) in javascript is really an object with properties.
@@ -98,6 +52,7 @@ objStatesAndCaps['West Virginia']   = "Charleston";
 objStatesAndCaps['Kentucky']        = "Frankfort";
 objStatesAndCaps['Tennessee']       = "Nashville"; 
 
+var aryWrong = [];
 
 /* Randomly sort an array
    Thanks to: 
@@ -143,7 +98,7 @@ function createCapsDiv(Capitals) {
                           Capitals[c] + "</div>");
   }
   $(".capital").hide();
-  $(".capital").filter(":first").show(1000);
+  $(".capital").filter(":first").addClass("cur-cap").show("slow");
 }
 
 /* Given an array of States, generate the HTML for the #states table.  Expects an empty
@@ -151,11 +106,47 @@ function createCapsDiv(Capitals) {
 */
 function createStatesDiv(States) {
   for (var s=0; s<States.length; s++) {
-      $("#states").append("<div class=\"state-cap\"><div class=\"state\" id=\"" +
-                   States[s].toId() + "\">" + States[s] + "</div><div class=\"ans\">" + 
-                   "</div></div>");
+      //$("#states").append("<div class=\"state-cap\"><div class=\"state\" id=\"" +
+      //             States[s].toId() + "\">" + States[s] + "</div><div class=\"ans\">" + 
+      //             "</div></div>");
+      $("#states").append('<div class="state">' + States[s] + '</div>');
   }
 }
+
+/* 
+** When a state is clicked... 
+**  -- If it is correct, fade out the state & capital and mark the capital as .cap-used, and fade in the new capital
+**  -- If it is wrong, put the capital at the end of the list, fade it out, and fade in the new one 
+**  -- But, if it is all done, then show the score
+*/
+function onStateClick() {
+
+  var curcap = $(".cur-cap");
+
+  console.log("clicked state: " + $(this).text() + "  visible cap: " + curcap.text() + "  should be: " + objStatesAndCaps[curcap.text()]);
+  
+  // if correct
+  if (curcap.text() == objStatesAndCaps[$(this).text()]) {
+    console.log("-- right!");
+    curcap.addClass("cap-used").removeClass("cur-cap").hide("fast");
+    $(this).addClass("state-used").fadeOut("slow");
+  }
+  // if wrong
+  else {
+    console.log("-- wrong!");
+    curcap.removeClass("cur-cap").hide("fast").detach().appendTo("#capitals"); 
+    aryWrong.push(curcap.text() + ", " + $(this).text());
+    $("#message-div").stop().css({"font-size":"0em","top":"15px","left":"-20px","opacity":"1"}).text("WRONG!!").animate({left: "+=60%",opacity: "0",fontSize: "+5em"}, 2000);
+  }
+
+  if ($(".state").length == $(".state-used").length) {
+    alert("Winner!  You missed " + aryWrong.length);
+  }
+  else {
+    $(".capital").not(".cap-used").filter(":first").addClass("cur-cap").show("slow");
+  }
+}
+  
 
 // A few additional prototypes to make things a bit easier to deal with
 String.prototype.toId = function () {return this.replace(/ /g, "_");};

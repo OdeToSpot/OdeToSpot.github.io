@@ -33,22 +33,31 @@ body {
 }
 
 #capitals {
-  display: flex;
-  flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
-  overflow: scroll;
-  width: 90%;
-  border: 1px solid gray;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 82px;
+  z-index: 99;
+  background: lightgrey;
+  border-bottom: 1px solid darkgrey;
 }
+
+#message-div {
+  position: absolute;
+  color: red;
+  font-weight: bold;
+} 
 
 #states {
   margin-top: 100px;
   width: 90%;
   overflow: scroll; 
-  border: 1px solid gray;
 }
 
 .capital {
+  font-size: xx-large;
   /*display: none;*/
 }
 
@@ -60,40 +69,14 @@ body {
   /*display: block;*/
 }
 
-.state-cap {
-  /*width: 20%;*/
-  width: 8em;
-  height: 50px;
-  padding: 14px;
-  margin: 1px;
-  border: 1px solid black;
-  text-align: center;
-  background: lightgreen;
-}
-
-.state, .ans {
-  width: 100%;
-  height: 50%;
-}
-
-.ans {
-  color: green;
-}
-
 .state {
-  border-bottom: 1px dotted black;
+  width: 33.3%;
+  height: 3em;
+  text-align: center;
 }
 
 .wrong {
   /*background-color: red;*/
-}
-
-.right {
-  
-}
-
-.wrong-red {
-  background-color: red;
 }
 
 button {
