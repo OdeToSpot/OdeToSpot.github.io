@@ -40,17 +40,17 @@
     function onStateClick(e) {
       var state = $(this).find(".state");
       var cap = $(this).find(".ans");
+      var curcap = $(".capital:visible");
 
-      cap.removeClass("wrong wrong-red");
+      //cap.removeClass("cap-display");
+      curcap.hide("slow");
+      curcap.addClass("cap-used");
+      $(".capital").not(".cap-used").filter(":first").show("slow");
       
+      // if this state has an associated capital, remove the capital and get it back in the capital display queue
       if (cap.text() > "") {
         $("#" + cap.text().toId()).removeClass("cap-used");
         cap.text("");
-      }
-      
-      if ($(".cap-clicked")) {
-        cap.text($(".cap-clicked").text());
-        $(".cap-clicked").addClass("cap-used").removeClass("cap-clicked");
       }
       
       if (cap.text() == objStatesAndCaps[state.text()]) {
@@ -59,6 +59,9 @@
       else if (cap.text() !== "") {
         cap.addClass("wrong");
       }
+
+      cap.text(curcap.text());
+
       
       if ($(".right").length == $(".capital").length) {
         alert("Woo! You did it!");
@@ -94,6 +97,7 @@ objStatesAndCaps['North Carolina']  = "Raleigh";
 objStatesAndCaps['West Virginia']   = "Charleston";
 objStatesAndCaps['Kentucky']        = "Frankfort";
 objStatesAndCaps['Tennessee']       = "Nashville"; 
+
 
 /* Randomly sort an array
    Thanks to: 
@@ -138,6 +142,8 @@ function createCapsDiv(Capitals) {
     $("#capitals").append("<div id=\"" + Capitals[c].toId() + "\" class=\"capital\">" +
                           Capitals[c] + "</div>");
   }
+  $(".capital").hide();
+  $(".capital").filter(":first").show(1000);
 }
 
 /* Given an array of States, generate the HTML for the #states table.  Expects an empty
@@ -155,19 +161,3 @@ function createStatesDiv(States) {
 String.prototype.toId = function () {return this.replace(/ /g, "_");};
 String.prototype.toState = function () {return this.replace(/_/g, " ");};
 
-
-// Pure javascript 
-/*
-    var thisGuy = document.querySelector("#capitals");
-    thisGuy.addEventListener("click",doIt,false);
-    alert("Hey " + thisGuy.id);
-    
-
-    function doIt(e) {
-      if (e.target !== e.currentTarget) {
-        e.target.classList.toggle("was-clicked");
-        }
-        
-        e.stopPropagation();
-    }
-*/

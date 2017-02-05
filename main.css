@@ -20,6 +20,7 @@ body {
 }
 
 /* Capital container will stay fixed at the top */
+
 .container-caps {
   position: fixed;
   top: 0;
@@ -48,29 +49,15 @@ body {
 }
 
 .capital {
-  font-size: 12pt;
-  width:  8em;
-  height: 20px;
-  padding: 8px;
-  margin: 2px;
-  border: 1px solid darkgray;
-  text-align: center;
-  background: lightblue;
-}
-
-/* tr:nth-child(even) {
-    background-color: #dddddd;
-} */
-
-.cap-clicked {
-	background-color: yellow;
-  border: 1px dashed black;
+  /*display: none;*/
 }
 
 .cap-used {
-  text-decoration: line-through;
-  color: gray;
-  background: lightgray;
+  /*display: none;*/
+}
+
+.cap-display {
+  /*display: block;*/
 }
 
 .state-cap {
@@ -127,7 +114,7 @@ button {
   #capitals {
     zorder: 99;
     max-height: 50px;
-    position: absolute; */
+    position: absolute; 
     overflow: auto;
   }
   
