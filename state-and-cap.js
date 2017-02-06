@@ -142,14 +142,16 @@ function onStateClick() {
   // if correct
   if (curcap.text() == objStatesAndCaps[$(this).text()]) {
     console.log("-- right!");
-    $.playSound("audio/" + aryRightAudio[Math.floor(Math.random() * aryRightAudio.length)]);
+    //$.playSound("audio/" + aryRightAudio[Math.floor(Math.random() * aryRightAudio.length)]);
+    //$("#" + aryRightAudio[Math.floor(Math.random() * aryRightAudio.length])[0].play();
+    $("#fantastic")[0].play();
     curcap.addClass("cap-used").removeClass("cur-cap").hide("fast");
     $(this).addClass("state-used").fadeOut("slow");
   }
   // if wrong
   else {
     console.log("-- wrong!");
-    $.playSound("audio/wrong");
+    $("#wrong")[0].play();
     curcap.removeClass("cur-cap").hide("fast").detach().appendTo("#capitals"); 
     aryWrong.push(curcap.text() + ", " + $(this).text());
     $("#message-div").stop().css({"font-size":"0em","top":"15px","left":"-20px","opacity":"1"}).text("WRONG!!").animate({left: "+=60%",opacity: "0",fontSize: "+5em"}, 2000);
