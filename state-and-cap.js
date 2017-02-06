@@ -61,7 +61,7 @@ var objStatesAndCaps = {
   "Georgia":         "Atlanta",
   "Florida":         "Tallahassee",
   "Alabama":         "Montgomery",
-  "Mississippy":     "Jackson"
+  "Mississippi":     "Jackson"
 };
 
 var aryWrong = [];
