@@ -17,6 +17,7 @@
     $("#btnReset").click(function() {
 
       aryWrong = [];
+      arySkipped=[];
 
       $(".capital").remove();
       createCapsDiv(capsToArray(objStatesAndCaps).sort(randomSort2));
@@ -27,6 +28,11 @@
   
     $(".state").click(onStateClick);
 
+    $(".capital").click(function() {
+      arySkipped.push($(".cur-cap").hide("fast").removeClass("cur-cap").detach().appendTo("#capitals").text());
+      console.log("skipped: " + arySkipped[arySkipped.length - 1]);
+      $(".capital").not(".cap-used").filter(":first").addClass("cur-cap").show("slow");
+    });
 })
   
 var curState = "";
@@ -34,25 +40,33 @@ var curState = "";
 //        One would normally define the properties as obj.prop = "value"; however, since
 //        some states' names have spaces, one must use the syntax obj['some prop'] = "value"
 //        Is there a different way to do this?
-var objStatesAndCaps = {};
-objStatesAndCaps['Main']            = "Augusta";
-objStatesAndCaps['Vermont']         = "Montpelier";
-objStatesAndCaps['New Hampshire']   = "Concord";
-objStatesAndCaps['Connecticut']     = "Hartford";
-objStatesAndCaps['Rhode Island']    = "Providence";
-objStatesAndCaps['Massachusetts']   = "Boston";
-objStatesAndCaps['New York']        = "Albany";
-objStatesAndCaps['Pennsylvania']    = "Harrisburg";
-objStatesAndCaps['New Jersey']      = "Trenton";
-objStatesAndCaps['Deleware']        = "Dover";
-objStatesAndCaps['Maryland']        = "Annapolis";
-objStatesAndCaps['Virginia']        = "Richmond";
-objStatesAndCaps['North Carolina']  = "Raleigh";
-objStatesAndCaps['West Virginia']   = "Charleston";
-objStatesAndCaps['Kentucky']        = "Frankfort";
-objStatesAndCaps['Tennessee']       = "Nashville"; 
+var objStatesAndCaps = {
+  "Main":            "Augusta",
+  "Vermont":         "Montpelier",
+  "New Hampshire":   "Concord",
+  "Connecticut":     "Hartford",
+  "Rhode Island":    "Providence",
+  "Massachusetts":   "Boston",
+  "New York":        "Albany",
+  "Pennsylvania":    "Harrisburg",
+  "New Jersey":      "Trenton",
+  "Deleware":        "Dover",
+  "Maryland":        "Annapolis",
+  "Virginia":        "Richmond",
+  "North Carolina":  "Raleigh",
+  "West Virginia":   "Charleston",
+  "Kentucky":        "Frankfort",
+  "Tennessee":       "Nashville", 
+  "South Carolina":  "Columbia",
+  "Georgia":         "Atlanta",
+  "Florida":         "Tallahassee",
+  "Alabama":         "Montgomery",
+  "Mississippy":     "Jackson"
+};
 
 var aryWrong = [];
+var arySkipped=[];
+var aryRightAudio = ["fantastic", "ok", "yeah", "yes"];
 
 /* Randomly sort an array
    Thanks to: 
@@ -123,24 +137,26 @@ function onStateClick() {
 
   var curcap = $(".cur-cap");
 
-  console.log("clicked state: " + $(this).text() + "  visible cap: " + curcap.text() + "  should be: " + objStatesAndCaps[curcap.text()]);
+  console.log("clicked state: " + $(this).text() + "  visible cap: " + curcap.text() + "  should be: " + objStatesAndCaps[$(this).text()]);
   
   // if correct
   if (curcap.text() == objStatesAndCaps[$(this).text()]) {
     console.log("-- right!");
+    $.playSound("audio/" + aryRightAudio[Math.floor(Math.random() * aryRightAudio.length)]);
     curcap.addClass("cap-used").removeClass("cur-cap").hide("fast");
     $(this).addClass("state-used").fadeOut("slow");
   }
   // if wrong
   else {
     console.log("-- wrong!");
+    $.playSound("audio/wrong");
     curcap.removeClass("cur-cap").hide("fast").detach().appendTo("#capitals"); 
     aryWrong.push(curcap.text() + ", " + $(this).text());
     $("#message-div").stop().css({"font-size":"0em","top":"15px","left":"-20px","opacity":"1"}).text("WRONG!!").animate({left: "+=60%",opacity: "0",fontSize: "+5em"}, 2000);
   }
 
   if ($(".state").length == $(".state-used").length) {
-    alert("Winner!  You missed " + aryWrong.length);
+    alert("Winner!  You missed " + aryWrong.length + ".  You skipped " + arySkipped.length);
   }
   else {
     $(".capital").not(".cap-used").filter(":first").addClass("cur-cap").show("slow");
