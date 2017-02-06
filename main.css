@@ -87,10 +87,11 @@ body {
   border: 1px solid black;
   margin: 1px;
   cursor: pointer;
+  background-color: lightblue;
 }
 
 .state:hover {
-  transform: skew(10deg);
+  /*transform: skew(10deg);*/
   background-color: lightgray;
 }
 

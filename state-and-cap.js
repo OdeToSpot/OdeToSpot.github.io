@@ -151,6 +151,7 @@ function onStateClick() {
   // if wrong
   else {
     console.log("-- wrong!");
+    $(this).effect("shake");
     $("#wrong")[0].play();
     curcap.removeClass("cur-cap").hide("fast").detach().appendTo("#capitals"); 
     aryWrong.push(curcap.text() + ", " + $(this).text());
