@@ -157,6 +157,7 @@ function onStateClick() {
 
   if ($(".state").length == $(".state-used").length) {
     alert("Winner!  You missed " + aryWrong.length + ".  You skipped " + arySkipped.length);
+    //var ddd = $("body").append('<div class="overlay">You are BOSS</div>');
   }
   else {
     $(".capital").not(".cap-used").filter(":first").addClass("cur-cap").show("slow");

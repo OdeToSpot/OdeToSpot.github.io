@@ -19,6 +19,16 @@ body {
   justify-content: center;
 }
 
+.overlay {
+  margin: auto;
+  position: absolute;
+  top: 50px; left: 50px;
+  bottom: 50px; right: 50px;
+  background-color: white;
+  color: blue;
+  z-index: 999;
+}
+
 /* Capital container will stay fixed at the top */
 
 .container-caps {
@@ -70,7 +80,7 @@ body {
 }
 
 .state {
-  width: 30.0%;
+  width: 45.0%;
   padding-top: 1.5em;
   padding-bottom: 1.5em;
   text-align: center;
@@ -94,29 +104,15 @@ button {
   text-align: center;
 }
 
-/*
-@media screen and (max-width: 700px) {
- </style>
- <meta name="viewport" content="width=device-width, initial-scale=1" />
- <style>
- main {
-    position: absolute;
-    
-  }
-  #capitals {
-    zorder: 99;
-    max-height: 50px;
-    position: absolute; 
-    overflow: auto;
-  }
-  
-  #states {
-    zorder: 1;
-    height: 100%;
-  }
-  
-  .cap-used {
-    display: none;
+@media screen and (min-width: 350px) {
+  .state {
+    width: 30%;
   }
 }
-*/
+
+@media screen and (min-width: 800px) {
+  body {
+    width: 800px;
+    margin: auto;
+  }
+}
