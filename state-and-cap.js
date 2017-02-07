@@ -28,11 +28,6 @@
   
     $(".state").click(onStateClick);
 
-    $(".capital").click(function() {
-      arySkipped.push($(".cur-cap").hide("fast").removeClass("cur-cap").detach().appendTo("#capitals").text());
-      console.log("skipped: " + arySkipped[arySkipped.length - 1]);
-      $(".capital").not(".cap-used").filter(":first").addClass("cur-cap").show("slow");
-    });
 })
   
 var curState = "";
@@ -113,6 +108,13 @@ function createCapsDiv(Capitals) {
   }
   $(".capital").hide();
   $(".capital").filter(":first").addClass("cur-cap").show("slow");
+  
+  $(".capital").click(function() {
+    arySkipped.push($(".cur-cap").hide("fast").removeClass("cur-cap").detach().appendTo("#capitals").text());
+    console.log("skipped: " + arySkipped[arySkipped.length - 1]);
+    $(".capital").not(".cap-used").filter(":first").addClass("cur-cap").show("slow");
+  });
+  
 }
 
 /* Given an array of States, generate the HTML for the #states table.  Expects an empty
