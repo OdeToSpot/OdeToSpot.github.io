@@ -41,7 +41,7 @@ var curState = "";
 //        some states' names have spaces, one must use the syntax obj['some prop'] = "value"
 //        Is there a different way to do this?
 var objStatesAndCaps = {
-  "Main":            "Augusta",
+  "Maine":           "Augusta",
   "Vermont":         "Montpelier",
   "New Hampshire":   "Concord",
   "Connecticut":     "Hartford",
