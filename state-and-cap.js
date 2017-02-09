@@ -22,7 +22,7 @@
       $(".capital").remove();
       createCapsDiv(capsToArray(objStatesAndCaps).sort(randomSort2));
 
-      $(".state").removeClass("state-used").fadeIn("fast");
+      $(".state").removeClass("state-used").fadeIn("fast").click(onStateClick);
       
     });
   
@@ -107,15 +107,31 @@ function createCapsDiv(Capitals) {
                           Capitals[c] + "</div>");
   }
   $(".capital").hide();
-  $(".capital").filter(":first").addClass("cur-cap").show("slow");
-  
-  $(".capital").click(function() {
-    arySkipped.push($(".cur-cap").hide("fast").removeClass("cur-cap").detach().appendTo("#capitals").text());
-    console.log("skipped: " + arySkipped[arySkipped.length - 1]);
-    $(".capital").not(".cap-used").filter(":first").addClass("cur-cap").show("slow");
-  });
-  
+  $(".capital").filter(":first")
+               .addClass("cur-cap")
+               .show("fast")
+               .click(onCapitalClick);
 }
+
+/*
+ * onCapitalClick - 
+ * Skip the current capital if it is clicked
+*/
+function onCapitalClick() {
+  arySkipped.push($(this).off("click")
+                         .hide("fast")
+                         .removeClass("cur-cap")
+                         .detach()
+                         .appendTo("#capitals")
+                         .text());
+  console.log("skipped: " + arySkipped[arySkipped.length - 1]);
+  $(".capital").not(".cap-used")
+               .filter(":first")
+               .addClass("cur-cap")
+               .show("fast")
+               .click(onCapitalClick);
+}
+
 
 /* Given an array of States, generate the HTML for the #states table.  Expects an empty
    <table id="states"></table> in the HTML
@@ -137,25 +153,24 @@ function createStatesDiv(States) {
 */
 function onStateClick() {
 
-  var curcap = $(".cur-cap");
+  $(this).off("click");
+  var curcap = $(".cur-cap").off("click");
 
   console.log("clicked state: " + $(this).text() + "  visible cap: " + curcap.text() + "  should be: " + objStatesAndCaps[$(this).text()]);
   
   // if correct
   if (curcap.text() == objStatesAndCaps[$(this).text()]) {
     console.log("-- right!");
-    //$.playSound("audio/" + aryRightAudio[Math.floor(Math.random() * aryRightAudio.length)]);
-    //$("#" + aryRightAudio[Math.floor(Math.random() * aryRightAudio.length])[0].play();
     $("#fantastic")[0].play();
     curcap.addClass("cap-used").removeClass("cur-cap").hide("fast");
-    $(this).addClass("state-used").fadeOut("slow");
+    $(this).addClass("state-used").fadeOut("fast");
   }
   // if wrong
   else {
     console.log("-- wrong!");
-    $(this).effect("shake");
+    $(this).effect("shake",function() { $(this).click(onStateClick) });
     $("#wrong")[0].play();
-    curcap.removeClass("cur-cap").hide("fast").detach().appendTo("#capitals"); 
+    curcap.removeClass("cur-cap").hide("fast").detach().appendTo("#capitals").click(onCapitalClick); 
     aryWrong.push(curcap.text() + ", " + $(this).text());
     $("#message-div").stop().css({"font-size":"0em","top":"15px","left":"-20px","opacity":"1"}).text("WRONG!!").animate({left: "+=60%",opacity: "0",fontSize: "+5em"}, 2000);
   }
@@ -165,7 +180,7 @@ function onStateClick() {
     //var ddd = $("body").append('<div class="overlay">You are BOSS</div>');
   }
   else {
-    $(".capital").not(".cap-used").filter(":first").addClass("cur-cap").show("slow");
+    $(".capital").not(".cap-used").filter(":first").addClass("cur-cap").show("fast",function() { $(this).click(onCapitalClick) });
   }
 }
   
