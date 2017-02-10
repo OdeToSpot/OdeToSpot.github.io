@@ -30,10 +30,13 @@ body {
 }
 
 #results {
-  margin-top: 100px;
+  flex-direction: column;
+  margin-top: 50px;
   z-index: 9999;
   border: 2px solid black;
   background: white;
+  align-items: center;
+  justify-content: center;
 }
 
 #results p {
@@ -44,10 +47,13 @@ body {
   margin: 15px;
 }
 
+#results th {
+  background-color: lightgray;
+}
+
 #results th,td {
   padding-right: 20px;
   padding-left: 20px;
-  background-color: yellow;
 }
 
 #results table {

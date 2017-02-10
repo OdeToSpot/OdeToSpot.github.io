@@ -12,23 +12,15 @@
       return $(".capitol").length - $(".cap-used").length;
     }
     
-    // Set up onClick event for submit button
-    
-    $("#btnReset").click(function() {
-
-      aryWrong = [];
-      arySkipped=[];
-
-      $(".capital").off("click").remove();
-      createCapsDiv(valToArray(objStatesAndCaps).sort(randomSort2));
-
-      $(".state").off("click").removeClass("state-used").fadeIn("fast").click(onStateClick);
-      
-    });
+    // Set up onClick event for buttons
+    $("#btnReset").click(btnReset);
+    $("#btnTryAgain").click(btnReset);
     
     $(".state").click(onStateClick);
 
 })
+
+
   
 var curState = "";
 // Note:  An associative array (ie hash) in javascript is really an object with properties.
@@ -39,7 +31,7 @@ var objStatesAndCaps = {
   "Maine":           "Augusta",
   "Vermont":         "Montpelier",
   "New Hampshire":   "Concord",
-/*  "Connecticut":     "Hartford",
+  "Connecticut":     "Hartford",
   "Rhode Island":    "Providence",
   "Massachusetts":   "Boston",
   "New York":        "Albany",
@@ -57,7 +49,6 @@ var objStatesAndCaps = {
   "Florida":         "Tallahassee",
   "Alabama":         "Montgomery",
   "Mississippi":     "Jackson"
-*/
 };
 
 var aryWrong = [];
@@ -177,7 +168,7 @@ function onStateClick() {
   }
 
   if ($(".state").length == $(".state-used").length) {
-    alert("Winner!  You missed " + aryWrong.length + ".  You skipped " + arySkipped.length);
+    //alert("Winner!  You missed " + aryWrong.length + ".  You skipped " + arySkipped.length);
     finalResults();
     //var ddd = $("body").append('<div class="overlay">You are BOSS</div>');
   }
@@ -211,13 +202,39 @@ function finalResults() {
 
   var sorted_res = propToArray(res).sort();
 
-  for (var i=0; i<sorted_res.length; i++) {
-    var c = sorted_res[i];
-    $("<tr><td>" + c + "</td><td>" + res[c].wrong + "</td><td>" + res[c].skipped + "</td></tr>").insertAfter($("#results-table tr:last"));
+  if (sorted_res.length <= 0) {
+    $("#results-table").hide();
+    $("#perfect-score").show();
+  }
+  else {
+    $(".result-row").remove();
+    $("#results-table").show();
+    $("#perfect-score").hide();
+
+    for (var i=0; i<sorted_res.length; i++) {
+      var c = sorted_res[i];
+      $("<tr class='result-row'><td>" + c + "</td><td>" + res[c].wrong + "</td><td>" + res[c].skipped + "</td></tr>").insertAfter($("#results-table tr:last"));
+    }
+
   }
 
-  $("#results").show();
+  $(".container").hide();
+  $("#results").fadeIn();
   
+}
+
+
+function btnReset() {
+  aryWrong = [];
+  arySkipped=[];
+
+  $(".capital").off("click").remove();
+  createCapsDiv(valToArray(objStatesAndCaps).sort(randomSort2));
+
+  $(".state").off("click").removeClass("state-used").fadeIn("fast").click(onStateClick);
+
+  $("#results").hide();
+  $(".container:not(#results").fadeIn();
 }
 
 // A few additional prototypes to make things a bit easier to deal with
