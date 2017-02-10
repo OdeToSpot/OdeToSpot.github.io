@@ -30,7 +30,7 @@ var curState = "";
 var objStatesAndCaps = {
   "Maine":           "Augusta",
   "Vermont":         "Montpelier",
-/*  "New Hampshire":   "Concord",
+  "New Hampshire":   "Concord",
   "Connecticut":     "Hartford",
   "Rhode Island":    "Providence",
   "Massachusetts":   "Boston",
@@ -49,7 +49,6 @@ var objStatesAndCaps = {
   "Florida":         "Tallahassee",
   "Alabama":         "Montgomery",
   "Mississippi":     "Jackson"
-  */
 };
 
 var aryWrong = [];
