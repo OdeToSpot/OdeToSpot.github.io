@@ -19,13 +19,13 @@
       aryWrong = [];
       arySkipped=[];
 
-      $(".capital").remove();
+      $(".capital").off("click").remove();
       createCapsDiv(capsToArray(objStatesAndCaps).sort(randomSort2));
 
-      $(".state").removeClass("state-used").fadeIn("fast").click(onStateClick);
+      $(".state").off("click").removeClass("state-used").fadeIn("fast").click(onStateClick);
       
     });
-  
+    
     $(".state").click(onStateClick);
 
 })
