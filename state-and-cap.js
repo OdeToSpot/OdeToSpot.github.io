@@ -215,6 +215,7 @@ function finalResults() {
     var c = sorted_res[i];
     $("<tr><td>" + c + "</td><td>" + res[c].wrong + "</td><td>" + res[c].skipped + "</td></tr>").insertAfter($("#results-table tr:last"));
   }
+
   $("#results").show();
   
 }
