@@ -138,10 +138,39 @@ body {
   /*background-color: red;*/
 }
 
-button {
+#btnTryAgain, #btnReset {
   padding: 24px;
   margin: 36px;
   text-align: center;
+}
+
+#toggle-audio {
+  background: none;
+}
+
+#hamburger {
+  position: absolute;
+  left: 10px; top: 20px;
+  border: 0;
+  outline: none;
+  background: none;
+  font-weight: bold;
+  font-size: xx-large;
+}
+
+#hamburger-menu {
+  width: 300px;
+  position: fixed;
+  left: 0; top: 82px;
+  z-index: 998;
+  background-color: white;
+  border: 1px solid gray;
+  box-shadow: 8px 8px lightgray;
+}
+
+#hamburger-menu li {
+  padding-top: 12px;
+  font-size: large;
 }
 
 @media screen and (min-width: 350px) {

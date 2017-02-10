@@ -1,6 +1,21 @@
 // jQuery
   $(document).ready(function() {
 
+    $("#hamburger-menu").hide();
+    $("#hamburger").click(function() {
+      $("#hamburger-menu").slideToggle();
+    });
+
+    $("#toggle-audio").click(function() {
+      if ($(this).text() == "Audio: Off") {
+        $(this).text("Audio: On");
+      }
+      else {
+        $(this).text("Audio: Off");
+      }
+      $("#hamburger").click();
+    });
+
     // Create the "#capitals" table.  Expects <table id="capitals> in the HTML
     createCapsDiv(valToArray(objStatesAndCaps).sort(randomSort2));
     
@@ -153,7 +168,9 @@ function onStateClick() {
   // if correct
   if (curcap.text() == objStatesAndCaps[$(this).text()]) {
     console.log("-- right!");
-    $("#fantastic")[0].play();
+    if ($("#toggle-audio").text() == "Audio: Off") {
+      $("#fantastic")[0].play();
+    }
     curcap.addClass("cap-used").removeClass("cur-cap").hide("fast");
     $(this).addClass("state-used").fadeOut("fast");
   }
@@ -161,7 +178,9 @@ function onStateClick() {
   else {
     console.log("-- wrong!");
     $(this).effect("shake",function() { $(this).click(onStateClick) });
-    $("#wrong")[0].play();
+    if ($("#toggle-audio").text() == "Audio: Off") {
+      $("#wrong")[0].play();
+    }
     curcap.removeClass("cur-cap").hide("fast").detach().appendTo("#capitals").click(onCapitalClick); 
     aryWrong.push(curcap.text() + ", " + $(this).text());
     $("#message-div").stop().css({"font-size":"0em","top":"15px","left":"-20px","opacity":"1"}).text("WRONG!!").animate({left: "+=60%",opacity: "0",fontSize: "+5em"}, 2000);
