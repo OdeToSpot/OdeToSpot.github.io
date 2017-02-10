@@ -150,12 +150,12 @@ body {
 
 #hamburger {
   position: absolute;
-  left: 10px; top: 20px;
+  left: 0; top: 0;
   border: 0;
   outline: none;
   background: none;
   font-weight: bold;
-  font-size: xx-large;
+  font-size: x-large;
 }
 
 #hamburger-menu {
@@ -177,7 +177,6 @@ body {
   .state {
     width: 30%;
   }
-}
 
 @media screen and (min-width: 800px) {
   body {
