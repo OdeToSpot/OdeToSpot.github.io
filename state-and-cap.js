@@ -2,10 +2,10 @@
   $(document).ready(function() {
 
     // Create the "#capitals" table.  Expects <table id="capitals> in the HTML
-    createCapsDiv(capsToArray(objStatesAndCaps).sort(randomSort2));
+    createCapsDiv(valToArray(objStatesAndCaps).sort(randomSort2));
     
     // Create the "#states" table.  Expects <table id="states" in the HTML
-    createStatesDiv(statesToArray(objStatesAndCaps).sort()); //randomSort2));
+    createStatesDiv(propToArray(objStatesAndCaps).sort()); //randomSort2));
 
     // Check whether all uttons are clicked
     function allSelected() {
@@ -20,7 +20,7 @@
       arySkipped=[];
 
       $(".capital").remove();
-      createCapsDiv(capsToArray(objStatesAndCaps).sort(randomSort2));
+      createCapsDiv(valToArray(objStatesAndCaps).sort(randomSort2));
 
       $(".state").removeClass("state-used").fadeIn("fast").click(onStateClick);
       
@@ -39,7 +39,7 @@ var objStatesAndCaps = {
   "Maine":           "Augusta",
   "Vermont":         "Montpelier",
   "New Hampshire":   "Concord",
-  "Connecticut":     "Hartford",
+/*  "Connecticut":     "Hartford",
   "Rhode Island":    "Providence",
   "Massachusetts":   "Boston",
   "New York":        "Albany",
@@ -57,6 +57,7 @@ var objStatesAndCaps = {
   "Florida":         "Tallahassee",
   "Alabama":         "Montgomery",
   "Mississippi":     "Jackson"
+*/
 };
 
 var aryWrong = [];
@@ -81,8 +82,7 @@ function randomSort2(a,b) {
     return( isOddOrEven*isPosOrNeg );
 }
 
-// Takes an associated array and returns an array of its keys in random order
-function capsToArray(a) {
+function valToArray(a) {
   var r = [];
   for (var i in a) {
     r.push(a[i]);
@@ -90,13 +90,14 @@ function capsToArray(a) {
   return r;
 }
 
-function statesToArray(a) {
+function propToArray(a) {
   var r = [];
   for (var i in a) {
     r.push(i);
   }
   return r;
 }
+
 
 /* Given an array of Capitals, generate the HTML for the #capitals table.  Expects an empty
    <table id="capitals"></table> in the HTML
@@ -177,13 +178,46 @@ function onStateClick() {
 
   if ($(".state").length == $(".state-used").length) {
     alert("Winner!  You missed " + aryWrong.length + ".  You skipped " + arySkipped.length);
+    finalResults();
     //var ddd = $("body").append('<div class="overlay">You are BOSS</div>');
   }
   else {
     $(".capital").not(".cap-used").filter(":first").addClass("cur-cap").show("fast",function() { $(this).click(onCapitalClick) });
   }
 }
+
+/*
+ * Final Results
+ */
+function finalResults() {
+
+  var res = {};
+
+  for (var i=0; i<aryWrong.length; i++) {
+    var c = aryWrong[i].split(", ")[0];
+    if (!res.hasOwnProperty(c)) {
+      res[c] = {wrong: 0, skipped: 0};
+    }
+    res[c].wrong++;
+  }
+
+  for (var i=0; i<arySkipped.length; i++) {
+    var c = arySkipped[i];
+    if (!res.hasOwnProperty(c)) {
+      res[c] = {wrong: 0, skipped: 0};
+    }
+    res[c].skipped++;
+  }
+
+  var sorted_res = propToArray(res).sort();
+
+  for (var i=0; i<sorted_res.length; i++) {
+    var c = sorted_res[i];
+    $("<tr><td>" + c + "</td><td>" + res[c].wrong + "</td><td>" + res[c].skipped + "</td></tr>").insertAfter($("#results-table tr")).last();
+  }
+  $("#results").show();
   
+}
 
 // A few additional prototypes to make things a bit easier to deal with
 String.prototype.toId = function () {return this.replace(/ /g, "_");};
