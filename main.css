@@ -29,6 +29,27 @@ body {
   z-index: 999;
 }
 
+#results {
+  z-index: 1000;
+}
+
+#results p {
+  width: 100%;
+}
+
+#results td {
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+#results td:nth-child(1), th:nth-child(1) {
+  text-align: left;
+}
+
+#results td:nth-child(2), td:nth-child(3), th:nth-child(2), th:nth-child(3) {
+  text-align: center;
+}
+
 /* Capital container will stay fixed at the top */
 
 .container-caps {
