@@ -30,7 +30,7 @@ var curState = "";
 var objStatesAndCaps = {
   "Maine":           "Augusta",
   "Vermont":         "Montpelier",
-  "New Hampshire":   "Concord",
+/*  "New Hampshire":   "Concord",
   "Connecticut":     "Hartford",
   "Rhode Island":    "Providence",
   "Massachusetts":   "Boston",
@@ -49,6 +49,7 @@ var objStatesAndCaps = {
   "Florida":         "Tallahassee",
   "Alabama":         "Montgomery",
   "Mississippi":     "Jackson"
+  */
 };
 
 var aryWrong = [];
@@ -234,7 +235,8 @@ function btnReset() {
   $(".state").off("click").removeClass("state-used").fadeIn("fast").click(onStateClick);
 
   $("#results").hide();
-  $(".container:not(#results").fadeIn();
+  //$(".container:not(#results").fadeIn();
+  $(".container").not("#results").fadeIn();
 }
 
 // A few additional prototypes to make things a bit easier to deal with
