@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>State Location Quiz</title>
+    <link rel="stylesheet" type="text/css" href="map.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+    <script src="us-map/lib/raphael.js"></script>
+    <script src="us-map/jquery.usmap.js"></script>
+    <script src="map.js"></script>
+    <script src="global-vars.js"></script>
+  </head>
+  <body>
+    <audio preload="auto" id="wrong"><source src="audio/wrong.mp3"></audio>
+    <audio preload="auto" id="fantastic">
+      <source src="audio/fantastic.mp3">
+    </audio>
+    <div id="states">
+      <div id="message-div"></div>
+      <div class="state">This is a test</div>
+    </div>
+
+    <div class="map-container">
+      <div id="map"></div>
+    </div>
+
+      <div class="container">
+        <button id="btnReset" class="button">Reset</button>
+      </div>
+    <div>
+  </body>
+</html>
