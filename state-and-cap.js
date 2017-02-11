@@ -36,33 +36,6 @@
 })
   
 var curState = "";
-// Note:  An associative array (ie hash) in javascript is really an object with properties.
-//        One would normally define the properties as obj.prop = "value"; however, since
-//        some states' names have spaces, one must use the syntax obj['some prop'] = "value"
-//        Is there a different way to do this?
-var objStatesAndCaps = {
-  "Maine":           "Augusta",
-  "Vermont":         "Montpelier",
-  "New Hampshire":   "Concord",
-  "Connecticut":     "Hartford",
-  "Rhode Island":    "Providence",
-  "Massachusetts":   "Boston",
-  "New York":        "Albany",
-  "Pennsylvania":    "Harrisburg",
-  "New Jersey":      "Trenton",
-  "Deleware":        "Dover",
-  "Maryland":        "Annapolis",
-  "Virginia":        "Richmond",
-  "North Carolina":  "Raleigh",
-  "West Virginia":   "Charleston",
-  "Kentucky":        "Frankfort",
-  "Tennessee":       "Nashville", 
-  "South Carolina":  "Columbia",
-  "Georgia":         "Atlanta",
-  "Florida":         "Tallahassee",
-  "Alabama":         "Montgomery",
-  "Mississippi":     "Jackson"
-};
 
 var aryWrong = [];
 var arySkipped=[];

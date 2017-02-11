@@ -31,17 +31,6 @@ body {
 
 /* Capital container will stay fixed at the top */
 
-.container-caps {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 82px;
-  overflow: scroll;
-  z-index: 99;
-  background: white;
-  padding-bottom: 10px;
-}
-
 #capitals {
   align-items: center;
   justify-content: center;
