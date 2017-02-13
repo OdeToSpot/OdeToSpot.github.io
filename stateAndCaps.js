@@ -38,7 +38,7 @@ var statesAndCaps = {
     for (var i in this.__stateToCap) {
       c.push(this.__stateToCap[i]);
     }
-    return c.sort(randomSort2());
+    return c.sort(randomSort2).sort(randomSort2).sort(randomSort2);
   },
 
   /*
