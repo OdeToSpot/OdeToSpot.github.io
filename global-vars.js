@@ -28,7 +28,7 @@ var objStatesAndCaps = {
   "Mississippi":     "Jackson"
 };
 
-var objStateAbbrev = {
+var objStateAbbr = {
   AL: 'Alabama',
   AK: 'Alaska',
   AZ: 'Arizona',
