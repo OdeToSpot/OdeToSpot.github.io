@@ -10,6 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
     <script src="state-and-cap.js"></script>
+    <script src="stateAndCaps.js"></script>
   </head>
   <body>
     <audio preload="auto" id="wrong"><source src="audio/wrong.mp3"></audio>
@@ -18,7 +19,8 @@
     </audio>
     <div id="hamburger-menu">
       <ul>
-        <li><button id="toggle-audio">Audio: Off</button></li>
+        <li><button id="toggle-audio" class="toggle-btn">Audio: On</button></li>
+        <li><button id="toggle-state-cap" class="toggle-btn">Play by: Capital</button></li>
       </ul>
     </div>
     <div id="capitals" class="container"> <!-- container-caps"> -->

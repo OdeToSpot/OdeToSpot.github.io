@@ -144,18 +144,18 @@ body {
   text-align: center;
 }
 
-#toggle-audio {
+toggle-btn {
   background: none;
 }
 
 #hamburger {
   position: absolute;
-  left: 0; top: 0;
+  left: 0; top: 20;
   border: 0;
   outline: none;
   background: none;
   font-weight: bold;
-  font-size: x-large;
+  font-size: xx-large;
 }
 
 #hamburger-menu {
