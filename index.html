@@ -10,18 +10,38 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
     <script src="state-and-cap.js"></script>
-    <script src="global-vars.js"></script>
+    <script src="stateAndCaps.js"></script>
   </head>
   <body>
     <audio preload="auto" id="wrong"><source src="audio/wrong.mp3"></audio>
     <audio preload="auto" id="fantastic">
       <source src="audio/fantastic.mp3">
     </audio>
-    <div id="capitals" class="container"> 
+    <div id="hamburger-menu">
+      <ul>
+        <li><button id="toggle-audio" class="toggle-btn">Audio: On</button></li>
+        <li><button id="toggle-state-cap" class="toggle-btn">Play by: Capital</button></li>
+      </ul>
+    </div>
+    <div id="capitals" class="container"> <!-- container-caps"> -->
+      <button id="hamburger">&#9776;</button>
       <div id="message-div"></div>
       <!-- <div id="capitals"> -->
         <!-- This is populated dynamically within the jQuery document.ready function -->
       <!-- </div>  -->
+    </div>
+
+    <div id="results" class="container" style="display:none;">
+      <p>Results</p>
+      <p id="perfect-score">100% Correct!!</p>
+      <table id="results-table">
+        <tr>
+          <th>Capital</th>
+          <th>Wrong</th>
+          <th>Skipped</th>
+        </tr>
+      </table>
+      <button id="btnTryAgain" class="button">Try Again!</button>
     </div>
 
     <div class="container">
