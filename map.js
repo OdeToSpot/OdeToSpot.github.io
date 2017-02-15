@@ -19,11 +19,11 @@ var x='MD';
 
 /* onStateClick function */
 function onStateClick(event, data) {
-  if (objStateAbbrev[data.name] == $('.state').text()) {
+  if (data.fullName == $('.state').text()) {
     alert("Yeah");
   }
   else {
-    alert("You picked " + data.name + " but should have picked " + $('.state').text());
+    alert("You picked " + data.fullName + " but should have picked " + $('.state').text());
   }
   var style = {};
   style["PA"] = { fill: 'purple' };
