@@ -279,6 +279,7 @@
         this.stateHitAreas[state] = R.path(paths[state]).attr({fill: "#000",
       "stroke-width": 0, "opacity" : 0.0, 'cursor': 'pointer'});
         this.stateHitAreas[state].node.dataState = state;
+        this.stateShapes[state].node.setAttribute("id", state); // add a state-abbv id tag to each state
       }
       
       // Bind events

@@ -9,7 +9,7 @@ var statesAndCaps = {
     "New York":        "Albany",
     "Pennsylvania":    "Harrisburg",
     "New Jersey":      "Trenton",
-    "Deleware":        "Dover",
+    "Delaware":        "Dover",
     "Maryland":        "Annapolis",
     "Virginia":        "Richmond",
     "North Carolina":  "Raleigh",
@@ -21,6 +21,58 @@ var statesAndCaps = {
     "Florida":         "Tallahassee",
     "Alabama":         "Montgomery",
     "Mississippi":     "Jackson"
+  },
+  __stateAbbv: {
+    'Alabama': 'AL',
+    'Alaska': 'AK',
+    'Arizona': 'AZ',
+    'Arkansas': 'AR',
+    'California': 'CA',
+    'Colorado': 'CO',
+    'Connecticut': 'CT',
+    'Delaware': 'DE',
+    'Florida': 'FL',
+    'Georgia': 'GA',
+    'Hawaii': 'HI',
+    'Idaho': 'ID',
+    'Illinois': 'IL',
+    'Indiana': 'IN',
+    'Iowa': 'IA',
+    'Kansas': 'KS',
+    'Kentucky': 'KY',
+    'Louisiana': 'LA',
+    'Maine': 'ME',
+    'Maryland': 'MD',
+    'Massachusetts': 'MA',
+    'Michigan': 'MI',
+    'Minnesota': 'MN',
+    'Mississippi': 'MS',
+    'Missouri': 'MO',
+    'Montana': 'MT',
+    'Nebraska': 'NE',
+    'Nevada': 'NV',
+    'New Hampshire': 'NH',
+    'New Jersey': 'NJ',
+    'New Mexico': 'NM',
+    'New York': 'NY',
+    'North Carolina': 'NC',
+    'North Dakota': 'ND',
+    'Ohio': 'OH',
+    'Oklahoma': 'OK',
+    'Oregon': 'OR',
+    'Pennsylvania': 'PA',
+    'Rhode Island': 'RI',
+    'South Carolina': 'SC',
+    'South Dakota': 'SD',
+    'Tennessee': 'TN',
+    'Texas': 'TX',
+    'Utah': 'UT',
+    'Vermont': 'VT',
+    'Virginia': 'VA',
+    'Washington': 'WA',
+    'West Virginia': 'WV',
+    'Wisconsin': 'WI',
+    'Wyoming': 'WY'
   },
 
   /*
@@ -58,6 +110,8 @@ var statesAndCaps = {
 
   /*
    * Flip from states being the keys to capitals
+   * This was a quick hack but it limits the ability to change
+   * some other things in this class
    */
   flipDriver: function() { 
     var reverse = {};
@@ -73,7 +127,20 @@ var statesAndCaps = {
    */
   getCapOf: function(s) {
     return this.__stateToCap[s];
-  }
+  },
+
+  /*
+   * Get the abbreviation for thet state
+   * Note that if sates and caps are 'flipped' this 
+   * this will return undefined
+   */
+  getAbbv: function(s) {
+      var a =  this.__stateAbbv[s];
+      if (a === undefined) {
+        console.log('!! Not getAbbv found for ' + s);
+      }
+      return a;
+    }
 };
 
 /* 
