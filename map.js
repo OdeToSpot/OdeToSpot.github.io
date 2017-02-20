@@ -9,32 +9,52 @@ $(document).ready(function() {
  */
 function onStateClick(event, data) {
   if ($("#map").queue().length > 0) {
-    console.log('Clicked, but map is still animating...');
+    console.log("Clicked, but map is still animating...");
     return;
   }
-  console.log('Clicked: ' + data.name + ' -- Current state: ' + statesAndCaps.getAbbv($('.cur-state').text()));
-  // First let's see if this is a state on the current list
-  if (statesAndCaps.allStates.indexOf(data.fullName) >=0) {
-    if (data.name == $('.cur-state').data('abbv')) {
+  console.log("Clicked: " + data.name + " -- Current state: " + statesAndCaps.getAbbv($(".cur-state").text()));
+  // First let"s see if this is a state on the current list
+  // and whether it has already be "used"
+  if (statesAndCaps.allStates.indexOf(data.fullName) >=0  && 
+      $("#"+data.name).data("used") != "1") {
+
+    $(".cur-state").hide();
+
+    // right
+    if (data.name == $(".cur-state").data("abbv")) {
+
+      console.log("-- right!");
+      $(".cur-state").addClass("used-state");
+      $("#"+data.name).data("used","1");
       var style = {};
-      style[data.name] = { fill: '#098e10' };
-      $('#map').usmap('stateSpecificStyles', style);
+      style[data.name] = { fill: "#098e10" };
+      //$("#map").usmap("stateSpecificHoverStyles", style);
+      $("#map").usmap("stateSpecificStyles", style);
+
     }
+    // wrong
     else {
+
       console.log("-- wrong!");
-      aryWrong.push($('.cur-state').text() + ", " + data.fullName); // displayed state, state clicked
+      var style = {};
+      style[data.name] = { fill: "#49b7b2" };
+      //$("#map").usmap("stateSpecificHoverStyles", style);
+      aryWrong.push($(".cur-state").text() + "," + data.name); // displayed state, state clicked
       $("#map").effect("shake");
+
     }
 
-    $('.cur-state').removeClass('cur-state').addClass('used-state').hide();
+    // Move this state to the end of the list
+    $(".cur-state").removeClass("cur-state").detach().appendTo("#states");;
+
     /*
      * check for winner
      */
-    if ($('.used-state').length == $('.state').length) {
+    if ($(".used-state").length == $(".state").length) {
       alert("you are done!");
     }
     else {
-      $('.state').not('.used-state').filter(':first').addClass('cur-state').show();
+      $(".state").not(".used-state").filter(":first").addClass("cur-state").show();
     }
   }
 }
@@ -60,10 +80,36 @@ function initialize() {
 
   $('#map').usmap({
     stateSpecificStyles: stateSpStyles,
-    stateHoverStyles: null,
+    //stateHoverStyles: null,//{fill: "#f2354b"},
     showLabels: false
   });
   
   $('#map').on('usmapclick', onStateClick); 
+}
+
+/*
+ * Final Results
+ */
+function finalResults() {
+
+  if (sorted_res.length <= 0) {
+    $("#results-table").hide();
+    $("#perfect-score").show();
+  }
+  else {
+    $(".result-row").remove();
+    $("#results-table").show();
+    $("#perfect-score").hide();
+
+    for (var i=0; i<sorted_res.length; i++) {
+      var c = sorted_res[i];
+      $("<tr class='result-row'><td>" + c + "</td><td>" + res[c].wrong + "</td><td>" 
+           + res[c].skipped + "</td></tr>").insertAfter($("#results-table tr:last"));
+    }
+
+  }
+
+  $(".container").hide();
+  $("#results").fadeIn();
   
 }

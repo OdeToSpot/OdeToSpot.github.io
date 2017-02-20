@@ -653,7 +653,7 @@
     },
 
     /**
-     * @param string property - A specific property to update, otherwise updates all mutable properties
+     * @param string property - A specific property to update, otherwise updates all mutable properties  THIS IS TO CHANGE PROPERTIES AFTER THE FACT
      */
     _refreshMap:function(property) {
       var properties = typeof property === "undefined" ? MUTABLE_PROPERTIES : [property];
