@@ -26,3 +26,28 @@ body {
   background-color: white;
   z-index: 99;
 }
+
+#hamburger {
+  position: absolute;
+  left: 0; top: 20;
+  border: 0;
+  outline: none;
+  background: none;
+  font-weight: bold;
+  font-size: xx-large;
+}
+
+#hamburger-menu {
+  width: 300px;
+  position: fixed;
+  left: 0; top: 50px;
+  z-index: 998;
+  background-color: white;
+  border: 1px solid gray;
+  box-shadow: 8px 8px lightgray;
+}
+
+#hamburger-menu li {
+  padding-top: 12px;
+  font-size: large;
+}

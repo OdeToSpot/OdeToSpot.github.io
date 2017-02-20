@@ -1,6 +1,33 @@
 var aryWrong = [];
+
+/*
+ * document ready
+ */
 $(document).ready(function() {
+
+  /*
+   * Hamburger Menu
+   */
+  $("#hamburger-menu").hide();
+  $("#hamburger").click(function() {
+    $("#hamburger-menu").slideToggle();
+  });
+
+  /*
+   * toggle audio
+   */
+  $("#toggle-audio").click(function() {
+    if ($(this).text() == "Audio: Off") {
+      $(this).text("Audio: On");
+    }
+    else {
+      $(this).text("Audio: Off");
+    }
+    $("#hamburger").click();
+  });
+
   initialize();
+
 });
 
 
@@ -41,6 +68,9 @@ function onStateClick(event, data) {
       //$("#map").usmap("stateSpecificHoverStyles", style);
       aryWrong.push($(".cur-state").text() + "," + data.name); // displayed state, state clicked
       $("#map").effect("shake");
+      if ($("#toggle-audio").text() == "Audio: On") {
+        $("#wrong")[0].play();
+      }
 
     }
 
