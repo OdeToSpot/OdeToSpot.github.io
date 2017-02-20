@@ -4,6 +4,7 @@ body {
 
 .map-container {
   margin-top: 100px;
+  width: 850px;
   overflow: auto;
 }
 
