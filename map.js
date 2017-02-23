@@ -97,6 +97,14 @@ function initialize() {
   aryWrong=[];
 
   /* 
+   * try to make the map scale to the screen
+   */
+  //if ($(window).width() > 900) {
+   // $("
+    // Don't have time right now... do this later
+
+
+  /* 
    * create a <div> for each state, and
    * add some color to the current states to be tested
    */

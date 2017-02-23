@@ -4,8 +4,12 @@ body {
 
 .map-container {
   margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
   width: 850px;
   overflow: auto;
+  align-items: center;
+  justify-content: center;
 }
 
 #map {
