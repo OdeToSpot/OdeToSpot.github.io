@@ -115,7 +115,8 @@ body {
   border: 1px solid black;
   margin: 1px;
   cursor: pointer;
-  background-color: lightblue;
+  background-color: #b8d5ef;
+  border-radius: 100px / 50px;
 }
 
 .state:hover {
@@ -139,7 +140,7 @@ toggle-btn {
 
 #hamburger {
   position: absolute;
-  left: 0; top: 20;
+  left: 0; top: 20px;
   border: 0;
   outline: none;
   background: none;

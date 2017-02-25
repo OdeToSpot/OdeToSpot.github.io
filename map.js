@@ -99,10 +99,13 @@ function initialize() {
   /* 
    * try to make the map scale to the screen
    */
-  //if ($(window).width() > 900) {
-   // $("
-    // Don't have time right now... do this later
-
+  var w = $(window).width();
+  if (w > 900) {
+    $(".map-container").width('100%');
+    $(".map-container").height(w);
+    $("#map").width('90%');
+    $("#map").height(w);
+  }
 
   /* 
    * create a <div> for each state, and
