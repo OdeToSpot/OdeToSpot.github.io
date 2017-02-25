@@ -6,7 +6,6 @@ body {
   margin-top: 100px;
   margin-left: auto;
   margin-right: auto;
-  width: 850px;
   overflow: auto;
   text-align: center;
 }
@@ -17,7 +16,6 @@ body {
   width:  800px;
   margin-left: auto;
   margin-right: auto;
-  overflow: scroll;
 }
 
 #states {
