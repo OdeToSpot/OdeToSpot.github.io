@@ -30,6 +30,25 @@ $(document).ready(function() {
 
 });
 
+/*
+ * onStateNameClick function
+ */
+function onStateNameClick() {
+  console.log('-- Skipped: ' + $(".cur-state").text());
+
+  $(".cur-state").off("click")
+                 .hide("fast")
+                 .removeClass("cur-state")
+                 .detach()
+                 .appendTo("#states");
+
+  $(".state").not(".used-state")
+             .filter(":first")
+             .addClass("cur-state")
+             .click(onStateNameClick)
+             .show("fast");
+} 
+
 
 /* 
  * onStateClick function 
@@ -45,7 +64,7 @@ function onStateClick(event, data) {
   if (statesAndCaps.allStates.indexOf(data.fullName) >=0  && 
       $("#"+data.name).data("used") != "1") {
 
-    $(".cur-state").hide();
+    $(".cur-state").hide().off("click");
 
     // right
     if (data.name == $(".cur-state").data("abbv")) {
@@ -75,7 +94,7 @@ function onStateClick(event, data) {
     }
 
     // Move this state to the end of the list
-    $(".cur-state").removeClass("cur-state").detach().appendTo("#states");;
+    $(".cur-state").removeClass("cur-state").detach().appendTo("#states");
 
     /*
      * check for winner
@@ -84,7 +103,7 @@ function onStateClick(event, data) {
       alert("you are done!");
     }
     else {
-      $(".state").not(".used-state").filter(":first").addClass("cur-state").show();
+      $(".state").not(".used-state").filter(":first").addClass("cur-state").show().click(onStateNameClick);
     }
   }
 }
@@ -117,7 +136,7 @@ function initialize() {
     stateSpStyles[statesAndCaps.getAbbv(a[i])] = { fill: '#49b7b2' };
   }
 
-  $(".state").hide().filter(":first").addClass("cur-state").show();
+  $(".state").hide().filter(":first").addClass("cur-state").click(onStateNameClick).show();
 
   $('#map').usmap({
     stateSpecificStyles: stateSpStyles,
