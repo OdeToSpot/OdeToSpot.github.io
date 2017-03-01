@@ -30,11 +30,12 @@ body {
   background-color: white;
   z-index: 99;
   min-height: 82px;
+  background: lightgrey;
 }
 
 #hamburger {
   position: absolute;
-  left: 0; top: 20;
+  left: 0; top: 20px;
   border: 0;
   outline: none;
   background: none;

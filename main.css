@@ -163,6 +163,10 @@ toggle-btn {
   font-size: large;
 }
 
+#hamburger-menu li:hover {
+  text-decoration: underline;
+}
+
 @media screen and (min-width: 350px) {
   .state {
     width: 30%;
