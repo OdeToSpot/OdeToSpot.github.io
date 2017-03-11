@@ -1,3 +1,5 @@
+"use strict";
+
 var statesAndCaps = {
   __stateToCap: {
     "Maine":           "Augusta",
