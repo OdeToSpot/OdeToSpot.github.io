@@ -23,7 +23,7 @@
         <li><a href="./index.html">Capital Quiz</a></li>
       </ul>
     </div>
-    <div id="states">
+    <div id="states" class="container">
       <button id="hamburger">&#9776;</button>
       <div id="message-div"></div>
     </div>
@@ -31,7 +31,18 @@
     <div class="map-container">
       <div id="map"></div>
     </div>
-
+    <div id="results" class="container" style="display:none;">
+      <p>Results</p>
+      <p id="perfect-score">100% Correct!!</p>
+      <table id="results-table">
+        <tr>
+          <th>State</th>
+          <th>Wrong</th>
+          <th>Skipped</th>
+        </tr>
+      </table>
+      <button id="btnTryAgain" class="button">Try Again!</button>
+    </div>
     <!--  <div class="container">
         <button id="btnReset" class="button">Reset</button>
       </div>

@@ -1,6 +1,7 @@
-"use strict";
+//"use strict";
 
 var aryWrong = [];
+var arySkipped=[];
 
 /*
  * document ready
@@ -37,6 +38,8 @@ $(document).ready(function() {
  */
 function onStateNameClick() {
   console.log('-- Skipped: ' + $(".cur-state").text());
+
+  arySkipped.push($(".cur-state").text());
 
   $(".cur-state").off("click")
                  .hide("fast")
@@ -78,6 +81,9 @@ function onStateClick(event, data) {
       style[data.name] = { fill: "#098e10" };
       //$("#map").usmap("stateSpecificHoverStyles", style);
       $("#map").usmap("stateSpecificStyles", style);
+      if ($("#toggle-audio").text() == "Audio: On") {
+        $("#fantastic")[0].play();
+      }
 
     }
     // wrong
@@ -87,7 +93,8 @@ function onStateClick(event, data) {
       var style = {};
       style[data.name] = { fill: "#49b7b2" };
       //$("#map").usmap("stateSpecificHoverStyles", style);
-      aryWrong.push($(".cur-state").text() + "," + data.name); // displayed state, state clicked
+      //aryWrong.push($(".cur-state").text() + "," + data.name); // displayed state, state clicked
+      aryWrong.push($(".cur-state").text());
       $("#map").effect("shake");
       if ($("#toggle-audio").text() == "Audio: On") {
         $("#wrong")[0].play();
@@ -102,7 +109,8 @@ function onStateClick(event, data) {
      * check for winner
      */
     if ($(".used-state").length == $(".state").length) {
-      alert("you are done!");
+      //alert("you are done!");
+      finalResults();
     }
     else {
       $(".state").not(".used-state").filter(":first").addClass("cur-state").show().click(onStateNameClick);
@@ -116,6 +124,9 @@ function onStateClick(event, data) {
 function initialize() {
 
   aryWrong=[];
+  arySkipped=[];
+
+  $("#results").hide();
 
   /* 
    * try to make the map scale to the screen
@@ -147,12 +158,38 @@ function initialize() {
   });
   
   $('#map').on('usmapclick', onStateClick); 
+  $("#btnTryAgain").click(function() {
+    location.reload();
+  });
+
+  $(".container").not("#results").fadeIn();
+  $(".map-container").fadeIn();
 }
 
 /*
  * Final Results
  */
 function finalResults() {
+
+  var res = {};
+
+  for (var i=0; i<aryWrong.length; i++) {
+    var c = aryWrong[i].split(", ")[0];
+    if (!res.hasOwnProperty(c)) {
+      res[c] = {wrong: 0, skipped: 0};
+    }
+    res[c].wrong++;
+  }
+
+  for (var i=0; i<arySkipped.length; i++) {
+    var c = arySkipped[i];
+    if (!res.hasOwnProperty(c)) {
+      res[c] = {wrong: 0, skipped: 0};
+    }
+    res[c].skipped++;
+  }
+
+  var sorted_res = Object.keys(res).sort();
 
   if (sorted_res.length <= 0) {
     $("#results-table").hide();
@@ -172,6 +209,7 @@ function finalResults() {
   }
 
   $(".container").hide();
+  $(".map-container").hide();
   $("#results").fadeIn();
   
 }
