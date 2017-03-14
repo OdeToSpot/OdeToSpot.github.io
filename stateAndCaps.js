@@ -22,7 +22,11 @@ var statesAndCaps = {
     "Georgia":         "Atlanta",
     "Florida":         "Tallahassee",
     "Alabama":         "Montgomery",
-    "Mississippi":     "Jackson"
+    "Mississippi":     "Jackson",
+    "Texas":           "Austin",
+    "Louisiana":       "Baton Rouge",
+    "Oklahoma":        "Oklahoma City",
+    "Arkansas":        "Little Rock"
   },
   __stateAbbv: {
     'Alabama': 'AL',
