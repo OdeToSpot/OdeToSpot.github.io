@@ -26,7 +26,10 @@ var statesAndCaps = {
     "Texas":           "Austin",
     "Louisiana":       "Baton Rouge",
     "Oklahoma":        "Oklahoma City",
-    "Arkansas":        "Little Rock"
+    "Arkansas":        "Little Rock",
+    "Ohio":            "Columbusa",
+    "Indiana":         "Indianapolis",
+    "Michigan":        "Lansing"
   },
   __stateAbbv: {
     'Alabama': 'AL',
