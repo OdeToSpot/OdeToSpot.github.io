@@ -27,7 +27,7 @@ var statesAndCaps = {
     "Louisiana":       "Baton Rouge",
     "Oklahoma":        "Oklahoma City",
     "Arkansas":        "Little Rock",
-    "Ohio":            "Columbusa",
+    "Ohio":            "Columbus",
     "Indiana":         "Indianapolis",
     "Michigan":        "Lansing"
   },
