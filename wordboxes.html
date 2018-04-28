@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8"/>
+<body>
+
+<canvas id="wordBoxCanvas" height="2000" width="600" styler="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+
+<script>
+  const startx = 0;
+  const starty = 45;
+
+  const w = 18;       // width of tall box, height & width of small box
+  const h = w * 2;    // height of tall box
+
+  const hs = w + 5;   // horizontal spacing
+  const vs = h + 25;  // vertical spacing
+
+  const smallChars = "aceimnorsuvwxz";
+  const tallChars  = "bdfhklt";
+  const lowChars   = "gjpqy";
+
+  const words = ["vacant","insistent","reversible","honorable","contestant","patriotism",
+                 "observant","urgent","pessimist","comfortable","absorbent","optimism",
+                 "finalist","terrible","frequent","laughable","radiant","collectible",
+                 "novelist","journalism","president","important","becoming","cheerful",
+                 "illness","evident","triumphant","occupant","digestible","curable"];
+
+
+  var c = document.getElementById("wordBoxCanvas");
+  var ctx = c.getContext("2d");
+  var x = startx;
+  var y = starty;
+
+  ctx.font = (w-5)+"px Arial";
+
+  for (i=0; i<words.length; i++) {
+
+    // put the number
+    ctx.fillText((i+1)+".",x,y);
+    x += hs;
+
+    word = words[i].toLowerCase();
+
+    for (j=0; j<word.length; j++) {
+
+      if (smallChars.indexOf(word.charAt(j)) >= 0) {
+        ctx.rect(x,y,w,-w);
+      }
+      else if (tallChars.indexOf(word.charAt(j)) >= 0) {
+        ctx.rect(x,y,w,-h);
+      }
+      else {
+        ctx.rect(x,y+h/2,w,-h);
+      }
+      x += hs;
+    }
+
+    x = startx;
+    if (i>=14) {
+      x += 300;
+    }
+
+    if (i!=14) {
+      y += vs;
+    } else {
+      y = starty;
+    }
+  }
+  ctx.stroke();
+</script>
+
+</body>
+</html>

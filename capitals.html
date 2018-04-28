@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>States and Capitals Quiz</title>
+    <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" type="text/css"> -->
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+    <script src="state-and-cap.js"></script>
+    <script src="stateAndCaps.js"></script>
+  </head>
+  <body>
+    <audio preload="auto" id="wrong"><source src="audio/wrong.mp3"></audio>
+    <audio preload="auto" id="fantastic">
+      <source src="audio/fantastic.mp3">
+    </audio>
+    <div id="hamburger-menu">
+      <ul>
+        <li id="toggle-audio" class="toggle-btn">Audio: On</li>
+        <li id="toggle-state-cap" class="toggle-btn">Play by: Capital</li>
+	<li><a href="./map.html">Map Quiz</a></li>
+      </ul>
+    </div>
+    <div id="capitals" class="container"> <!-- container-caps"> -->
+      <button id="hamburger">&#9776;</button>
+      <div id="message-div"></div>
+      <!-- <div id="capitals"> -->
+        <!-- This is populated dynamically within the jQuery document.ready function -->
+      <!-- </div>  -->
+    </div>
+
+    <div id="results" class="container" style="display:none;">
+      <p>Results</p>
+      <p id="perfect-score">100% Correct!!</p>
+      <table id="results-table">
+        <tr>
+          <th>Capital</th>
+          <th>Wrong</th>
+          <th>Skipped</th>
+        </tr>
+      </table>
+      <button id="btnTryAgain" class="button">Try Again!</button>
+    </div>
+
+    <div class="container">
+      <div id="states" class="container">
+        <!-- <div class="state-class">
+                <div class="state" id="the state"> </div>
+                <div class="ans"> </div>
+             </div>
+         -->
+      </div>
+
+      <div class="container">
+        <button id="btnReset" class="button">Reset</button>
+        <!-- <button id="btnHint" class="button">Hint</button> -->
+      </div>
+    <div>
+  </body>
+</html>
